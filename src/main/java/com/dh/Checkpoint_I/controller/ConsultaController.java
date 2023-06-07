@@ -1,15 +1,11 @@
 package com.dh.Checkpoint_I.controller;
 
-import com.dh.Checkpoint_I.service.ClinicaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.sql.SQLException;
 
-@RestController
-@RequestMapping("/clinica")
-public class ClinicaController {
-
+public class ConsultaController {
 
     private ClinicaService clinicaService;
 
@@ -19,12 +15,9 @@ public class ClinicaController {
     }
 
     @GetMapping("/buscarClinicas")
-    public List<Clinica> buscarClinicas() throws SQLException{
+    public List<Clinica> buscarClinicas() throws SQLException {
         return clinicaService.buscarTodos();
     }
-
-
-
 }
 //@RestController
 //@RequestMapping("/filiais")

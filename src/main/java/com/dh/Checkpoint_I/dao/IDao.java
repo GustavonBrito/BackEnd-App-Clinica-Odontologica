@@ -4,11 +4,13 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public interface IDao {
+public interface IDao <T>{
     //Retorno nomeMetodo(Parametros);
-    T salvar(T t) throws SQLException;
+    T adicionar(T t) throws SQLException;
 
     List<T> buscarTodos() throws SQLException;
+
+    List<T> modificar() throws SQLException;
 
     Optional<T> buscarPorId(int id) throws SQLException;
 
