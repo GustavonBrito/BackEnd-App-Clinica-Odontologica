@@ -4,6 +4,7 @@ import com.dh.Checkpoint_I.dao.IDao;
 import com.dh.Checkpoint_I.model.Dentista;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class DentistaService {
 
@@ -15,5 +16,17 @@ public class DentistaService {
 
     public Dentista adicionar(Dentista dentista) throws SQLException {
         return dentistaDao.adicionar(dentista);
+    }
+
+    public List<Dentista> listarTodos() throws SQLException {
+        return dentistaDao.listarTodos();
+    }
+
+    public void remover(Dentista dentista) throws SQLException {
+        dentistaDao.remover(dentista);
+    }
+
+    public void editar(Dentista dentista) throws SQLException {
+        dentistaDao.editar(dentista);
     }
 }
