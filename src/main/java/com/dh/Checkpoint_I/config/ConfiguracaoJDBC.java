@@ -16,7 +16,7 @@ public class ConfiguracaoJDBC {
 
     public ConfiguracaoJDBC() {
         this.jdbcDrive = "com.mysql.cj.jdbc.Driver";
-        this.dbUrl = "jdbc:mysql://localhost:3000/clinicas";
+        this.dbUrl = "jdbc:mysql://localhost:3306/clinica";
         this.nomeUsuario = "root";
         this.senha = "root";
     }

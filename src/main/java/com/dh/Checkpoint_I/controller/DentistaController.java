@@ -1,56 +1,73 @@
 package com.dh.Checkpoint_I.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.dh.Checkpoint_I.config.ConfiguracaoJDBC;
+import com.dh.Checkpoint_I.dao.impl.DentistaDao;
+import com.dh.Checkpoint_I.model.Dentista;
+import com.dh.Checkpoint_I.service.DentistaService;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class DentistaController {
 
-    private ClinicaService clinicaService;
+    private static DentistaService dentistaService;
+    private static Scanner scanner;
 
-    @Autowired
-    public ClinicaController(ClinicaService clinicaService){
-        this.clinicaService = clinicaService;
+    public static void main(String[] args) {
+        configurarDependencias();
+        exibirMenu();
     }
 
-    @GetMapping("/buscarClinicas")
-    public List<Clinica> buscarClinicas() throws SQLException {
-        return clinicaService.buscarTodos();
+    private static void configurarDependencias() {
+        // Configurar as dependências, como a instância do DentistaService
+        dentistaService = new DentistaService(new DentistaDao(new ConfiguracaoJDBC()));
+        scanner = new Scanner(System.in);
+    }
+
+    private static void exibirMenu() {
+        int opcao;
+        do {
+            System.out.println("Escolha uma opção:");
+            System.out.println("1. Adicionar Dentista");
+            System.out.println("2. Sair");
+            System.out.print("Opção: ");
+            opcao = scanner.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    adicionarDentista();
+                    break;
+                case 2:
+                    System.out.println("Encerrando o programa...");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+
+            System.out.println();
+        } while (opcao != 2);
+    }
+
+    private static void adicionarDentista() {
+        System.out.println("=== Adicionar Dentista ===");
+
+        System.out.print("Matrícula de Cadastro: ");
+        String matriculaCadastro = scanner.next();
+
+        System.out.print("Nome: ");
+        String nome = scanner.next();
+
+        System.out.print("Sobrenome: ");
+        String sobrenome = scanner.next();
+
+        Dentista dentista = new Dentista(matriculaCadastro, nome, sobrenome);
+
+        try {
+            Dentista dentistaAdicionado = dentistaService.adicionar(dentista);
+            System.out.println("Dentista adicionado com sucesso:");
+            System.out.println(dentistaAdicionado);
+        } catch (SQLException e) {
+            System.out.println("Ocorreu um erro ao adicionar o dentista: " + e.getMessage());
+        }
     }
 }
-//@RestController
-//@RequestMapping("/filiais")
-//public class FilialController {
-//
-//    private FilialService filialService;
-//
-//    @Autowired
-//    public FilialController(FilialService filialService) {
-//        this.filialService = filialService;
-//    }
-//
-//    @PostMapping
-//    public ResponseEntity<FilialResponseDTO> cadastrar(@RequestBody FilialRequestDTO filial) throws SQLException {
-//        FilialResponseDTO response = filialService.salvar(filial);
-//        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
-//    }
-//
-//    @GetMapping("/buscar")
-//    public List<Filial> buscarFiliais() throws SQLException {
-//        //status code 200 - OK
-//        return filialService.buscarTodos();
-//    }
-//
-//    @GetMapping("/buscar/{id}")
-//    public Optional<Filial> buscarPorId(@PathVariable int id) throws SQLException {
-//        //status code 200 - OK
-//        return filialService.buscarPorId(id);
-//    }
-//
-//    @DeleteMapping("/deletar/{id}")
-//    public void deletar(@PathVariable int id) throws SQLException{
-//        //status code 204 - No Content
-//        filialService.deletarPorId(id);
-//
-//    }
