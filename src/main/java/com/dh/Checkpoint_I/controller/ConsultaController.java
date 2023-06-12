@@ -1,22 +1,26 @@
 package com.dh.Checkpoint_I.controller;
 
+import com.dh.Checkpoint_I.dto.request.ConsultaRequestDTO;
+import com.dh.Checkpoint_I.dto.response.ConsultaResponseDTO;
+import com.dh.Checkpoint_I.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.sql.SQLException;
 
 public class ConsultaController {
 
-    private ClinicaService clinicaService;
+    private ConsultaService consultaService;
 
     @Autowired
-    public ClinicaController(ClinicaService clinicaService){
-        this.clinicaService = clinicaService;
+    public ConsultaController(ConsultaService consultaService){
+        this.consultaService = consultaService;
     }
 
-    @GetMapping("/buscarClinicas")
-    public List<Clinica> buscarClinicas() throws SQLException {
-        return clinicaService.buscarTodos();
+    @PostMapping("/registrarConsultas")
+    public ConsultaResponseDTO registrarConsultas(@RequestBody ConsultaRequestDTO consulta) throws SQLException {
+        return consultaService.registrarConsulta(consulta);
     }
 }
 //@RestController

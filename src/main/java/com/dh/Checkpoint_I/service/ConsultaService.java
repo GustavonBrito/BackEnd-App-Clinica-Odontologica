@@ -1,21 +1,31 @@
 package com.dh.Checkpoint_I.service;
 
-import com.dh.Checkpoint_I.dao.IDao;
+import com.dh.Checkpoint_I.dto.request.ConsultaRequestDTO;
+import com.dh.Checkpoint_I.repository.IDao;
+import com.dh.Checkpoint_I.repository.impl.ConsultaDao;
+import com.dh.Checkpoint_I.dto.response.ConsultaResponseDTO;
 import com.dh.Checkpoint_I.model.Consulta;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
+
+import static org.apache.coyote.http11.Constants.a;
 
 public class ConsultaService {
 
     private IDao<Consulta> consultaIDao;
 
     @Autowired
-    public ConsultaService(ConsultaDao<Consulta> ConsultaDao){
+    public ConsultaService(IDao<Consulta> ConsultaDao){
         this.consultaIDao = consultaIDao;
+    }
+    public ConsultaResponseDTO registrarConsulta(ConsultaRequestDTO requestDTO) throws SQLException{
+        ObjectMapper mapper = new ObjectMapper();
+        Consulta consulta = mapper.convertValue(requestDTO, Consulta.class);
+        Consulta consultaSalva = ConsultaDao.registrarConsulta(consulta);
+        ConsultaResponseDTO consultaResponseDTO = mapper.convertValue(consultaSalva, ConsultaResponseDTO.class);
+        return consultaResponseDTO;
     }
 
 
