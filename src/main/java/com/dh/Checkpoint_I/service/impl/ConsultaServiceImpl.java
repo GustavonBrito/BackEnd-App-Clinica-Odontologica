@@ -5,14 +5,12 @@ import com.dh.Checkpoint_I.dto.request.ConsultaRequestDTO;
 //import com.dh.Checkpoint_I.dto.request.PacienteRequestDTO;
 import com.dh.Checkpoint_I.dto.response.ConsultaResponseDTO;
 import com.dh.Checkpoint_I.model.Consulta;
-import com.dh.Checkpoint_I.repository.impl.IConsultaRepository;
+import com.dh.Checkpoint_I.repository.IConsultaRepository;
 import com.dh.Checkpoint_I.service.IConsultaService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 @Service
 public class ConsultaServiceImpl implements IConsultaService {

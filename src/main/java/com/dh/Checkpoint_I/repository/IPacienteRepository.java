@@ -1,4 +1,4 @@
-package com.dh.Checkpoint_I.repository.impl;
+package com.dh.Checkpoint_I.repository;
 
 import com.dh.Checkpoint_I.model.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
