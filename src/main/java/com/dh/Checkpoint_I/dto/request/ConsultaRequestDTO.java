@@ -5,6 +5,7 @@ import com.dh.Checkpoint_I.model.Paciente;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -15,10 +16,11 @@ import java.time.LocalDateTime;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConsultaRequestDTO {
-    private LocalDateTime dataHoraPaciente;
-    private LocalDateTime dataHoraConsulta;
-    private Dentista dentista;
-    private Paciente paciente;
+    private LocalDate dataHoraPaciente;
+    private LocalDate dataHoraDentista;
+    private LocalDate dataHoraConsulta;
+    private String nomeDentista;
+    private String nomePaciente;
 }
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //        import lombok.*;

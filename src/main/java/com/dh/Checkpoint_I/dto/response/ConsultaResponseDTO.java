@@ -5,20 +5,21 @@ import com.dh.Checkpoint_I.model.Paciente;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ConsultaResponseDTO {
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @ToString
-    @Builder
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class ConsultaRequestDTO {
-        private LocalDateTime dataHoraPaciente;
-        private LocalDateTime dataHoraConsulta;
-        private Dentista dentista;
-        private Paciente paciente;
-    }
+    private LocalDate dataHoraPaciente;
+    private LocalDate dataHoraDentista;
+    private LocalDate dataHoraConsulta;
+    private String nomeDentista;
+    private String nomePaciente;
 }
+
