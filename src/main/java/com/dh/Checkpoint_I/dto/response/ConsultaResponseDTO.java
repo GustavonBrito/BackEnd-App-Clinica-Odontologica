@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,9 +17,9 @@ import java.time.LocalDateTime;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConsultaResponseDTO {
-    private LocalDate dataHoraPaciente;
-    private LocalDate dataHoraDentista;
-    private LocalDate dataHoraConsulta;
+    private LocalDateTime dataHoraPaciente;
+    private LocalDateTime dataHoraDentista;
+    private LocalDateTime dataHoraConsulta;
     private String nomeDentista;
     private String nomePaciente;
 }

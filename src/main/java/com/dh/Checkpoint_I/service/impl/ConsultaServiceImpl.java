@@ -33,6 +33,15 @@ public class ConsultaServiceImpl implements IConsultaService {
 //        Consulta consultaSalva = consultaIDao.registrarConsulta(consulta);
 //        ConsultaResponseDTO consultaResponseDTO = mapper.convertValue(consultaSalva, ConsultaResponseDTO.class);
         Consulta consulta = toConsulta(requestDTO);
+//        for (int i = 0; i < consulta.getDataHoraDentista().size(); i++) {
+//            if (consulta.getDataHoraPaciente().equals(consulta.getDataHoraDentista().get(i))){
+//                System.out.println("Dentista com consulta já marcada neste horario");
+//            }else{
+//                Consulta consultaSalva = iConsultaRepository.save(consulta);
+//                ConsultaResponseDTO consultaResponseDTO = toConsultaResponseDTO(consultaSalva);
+//                return consultaResponseDTO;
+//            }
+//        }
         Consulta consultaSalva = iConsultaRepository.save(consulta);
         ConsultaResponseDTO consultaResponseDTO = toConsultaResponseDTO(consultaSalva);
         return consultaResponseDTO;

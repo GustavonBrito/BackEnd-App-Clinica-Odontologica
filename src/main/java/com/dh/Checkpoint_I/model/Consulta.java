@@ -1,11 +1,14 @@
 package com.dh.Checkpoint_I.model;
 
 import lombok.*;
+import net.bytebuddy.asm.Advice;
+import org.hibernate.annotations.ListIndexBase;
 
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -19,9 +22,9 @@ public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private LocalDate dataHoraPaciente;
-    private LocalDate  dataHoraDentista;
-    private LocalDate dataHoraConsulta;
+    private LocalDateTime dataHoraPaciente;
+    private LocalDateTime dataHoraDentista;
+    private LocalDateTime dataHoraConsulta;
     private String nomeDentista;
     private String nomePaciente;
 }
